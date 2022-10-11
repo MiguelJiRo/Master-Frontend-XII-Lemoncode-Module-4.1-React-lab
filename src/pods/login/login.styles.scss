@@ -1,0 +1,21 @@
+.loginHeaderContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.loginCard {
+    background-color: #2A2A2A;
+    width: 20rem;
+    margin: auto;
+    margin-top: 5rem;
+    color: red;
+}
+
+.loginCardContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
