@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./list.styles.scss";
 import Avatar from '@mui/material/Avatar';
 import { MemberEntity } from "./api/api.model";
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, TableFooter } from "@mui/material";

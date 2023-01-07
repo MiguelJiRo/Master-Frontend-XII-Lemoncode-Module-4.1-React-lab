@@ -3,13 +3,14 @@
   padding: 0;
 }
 
-.list-user-list-container {
-  display: flex;
-  flex-direction: column;
+.NavigationBar {
+  justify-content: center;
+  align-items: center;
+  height: 3rem;
+  background-color: #FEE6F0 !important;
 }
 
 .appBarHeader {
-  display: flex;
   justify-content: center;
   height: 6rem;
   background-color: #01c5e790 !important;

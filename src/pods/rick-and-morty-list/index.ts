@@ -1,0 +1,1 @@
+export { RickAndMortyListContainer } from './rick-and-morty-list.container';

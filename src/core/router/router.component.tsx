@@ -4,7 +4,9 @@ import { switchRoutes } from './routes';
 import {
   LoginScene,
   ListScene,
-  DetailScene
+  DetailScene,
+  RickAndMortyListScene,
+  RickAndMortyDetailScene,
 } from 'scenes';
 
 export const RouterComponent: React.FC = () => {
@@ -22,6 +24,14 @@ export const RouterComponent: React.FC = () => {
         <Route
           path={switchRoutes.memberDetail}
           element={<DetailScene />}
+        />
+        <Route
+          path={switchRoutes.rickAndMortyList}
+          element={<RickAndMortyListScene />}
+        />
+        <Route
+          path={switchRoutes.rickAndMortyDetail}
+          element={<RickAndMortyDetailScene />}
         />
       </Routes>
     </HashRouter>

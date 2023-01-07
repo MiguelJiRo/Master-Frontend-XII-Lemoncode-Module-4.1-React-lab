@@ -29,36 +29,34 @@ export const SearchBar: React.FC<Props> = props => {
 
   return (
     <>
-      <div className="list-user-list-container">
-        <Box sx={{ flexGrow: 1 }}>
-          <AppBar position="static" className="appBarHeader">
-            <Toolbar>
-              <Typography
-                variant="h6"
-                noWrap
-                component="div"
-                sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
-              >
-                Users: {lastSearch}
-              </Typography>
-              <TextField
-                id="outlined-textarea"
-                label="Search"
-                placeholder={lastSearch}
-                multiline
-                onChange={(e) => {
-                  onChange(e.target.value);
-                  setOrg(e.target.value)
-                }}
-                value={searchValue}
-              />
-              <IconButton onClick={onClicked}>
-                <SearchIcon />
-              </IconButton>
-            </Toolbar>
-          </AppBar>
-        </Box>
-      </div>
+      <Box sx={{ flexGrow: 1 }}>
+        <AppBar position="static" className="appBarHeader">
+          <Toolbar>
+            <Typography
+              variant="h6"
+              noWrap
+              component="div"
+              sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+            >
+              {lastSearch}
+            </Typography>
+            <TextField
+              id="outlined-textarea"
+              label="Search"
+              placeholder={lastSearch}
+              multiline
+              onChange={(e) => {
+                onChange(e.target.value);
+                setOrg(e.target.value)
+              }}
+              value={searchValue}
+            />
+            <IconButton onClick={onClicked} title="">
+              <SearchIcon />
+            </IconButton>
+          </Toolbar>
+        </AppBar>
+      </Box>
     </>
   );
 }
