@@ -1,14 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import { ListComponent } from "./list.component";
 import { SearchBar } from '../../common/components/search-bar.component';
 import { getMembers } from './api/api';
 import { MemberEntity } from "./api/api.model";
 import { useDebounce } from "use-debounce";
+import { OrganizationContext } from '../../core/router/organization/organization.context'
 
 export const ListContainer = () => {
   const [memberList, setMemberList] = React.useState<MemberEntity[]>([]);
-  const [searchValue, setSearchValue] = React.useState('lemoncode');
-  const [debouncedFilter] = useDebounce(searchValue, 500);
+  const { searchValue, setSearchValue } = useContext(OrganizationContext);
+  const [debouncedFilter] = useDebounce(searchValue, 2000);
 
   const onFetchUsers = (searchValue: string) => {
     getMembers(searchValue)
