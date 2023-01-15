@@ -5,6 +5,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Button } from "@mui/material";
 import { DetailComponent } from "./detail.component";
 import { Link } from "react-router-dom";
+import { routes } from '../../core/router/routes';
 
 export const DetailContainer = () => {
   const { id } = useParams();
@@ -16,7 +17,7 @@ export const DetailContainer = () => {
         setCharacter(character);
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
   }
 
@@ -27,7 +28,7 @@ export const DetailContainer = () => {
   return (
     <>
       <Button color="secondary" startIcon={<ArrowBackIcon />}>
-        <Link to="/rickandmorty/list">Back to list</Link>
+        <Link to={routes.rickAndMortyList}>Back to list</Link>
       </Button>
       <div className="detailContainer">
         {character && <DetailComponent character={character} />}

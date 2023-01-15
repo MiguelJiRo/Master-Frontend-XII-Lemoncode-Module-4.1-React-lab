@@ -1,6 +1,4 @@
 import { generatePath } from 'react-router-dom';
-import { RickAndMortyDetailScene } from '../../scenes/rick-and-morty-detail.scene';
-import { RickAndMortyListComponent } from '../../pods/rick-and-morty-list/rick-and-morty-list.component';
 
 interface SwitchRoutes {
   root: string;
@@ -18,11 +16,13 @@ export const switchRoutes: SwitchRoutes = {
   rickAndMortyDetail: '/rickandmorty/:id',
 };
 
-interface Routes extends Omit<SwitchRoutes, 'memberDetail'> {
+interface Routes extends Omit<SwitchRoutes, 'memberDetail' | 'rickAndMortyDetail'> {
   memberDetail: (id: string) => string;
+  rickAndMortyDetail: (id: string) => string;
 }
 
 export const routes: Routes = {
   ...switchRoutes,
   memberDetail: id => generatePath(switchRoutes.memberDetail, { id }),
+  rickAndMortyDetail: id => generatePath(switchRoutes.rickAndMortyDetail, { id }),
 };

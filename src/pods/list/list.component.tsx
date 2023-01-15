@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Avatar from '@mui/material/Avatar';
 import { MemberEntity } from "./api/api.model";
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, TableFooter } from "@mui/material";
+import { routes } from '../../core/router/routes';
 
 interface Props {
   memberList: MemberEntity[];
@@ -66,7 +67,9 @@ export const ListComponent: React.FC<Props> = props => {
                 <TableCell align="left">
                   <Avatar alt={member.login} src={member.avatar_url} />
                 </TableCell>
-                <TableCell align="left"><Link to={`/detail/${member.login}`}>{member.login}</Link></TableCell>
+                <TableCell align="left">
+                  <Link to={routes.memberDetail(member.login)}>{member.login}</Link>
+                </TableCell>
                 <TableCell align="left">{member.id}</TableCell>
               </TableRow>
             ))}
@@ -74,7 +77,7 @@ export const ListComponent: React.FC<Props> = props => {
           <TableFooter>
             <TableRow>
               <TablePagination
-                rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+                rowsPerPageOptions={[5, 10, 25]}
                 colSpan={3}
                 count={memberList.length}
                 rowsPerPage={rowsPerPage}
@@ -87,6 +90,8 @@ export const ListComponent: React.FC<Props> = props => {
                 }}
                 onPageChange={handleChangePage}
                 onRowsPerPageChange={handleChangeRowsPerPage}
+                showFirstButton
+                showLastButton
               />
             </TableRow>
           </TableFooter>

@@ -3,7 +3,6 @@ import { ListComponent } from "./list.component";
 import { SearchBar } from '../../common/components/search-bar.component';
 import { getMembers } from './api/api';
 import { MemberEntity } from "./api/api.model";
-import { NavigationBar } from "../../common/components/navigation-bar.component";
 import { useDebounce } from "use-debounce";
 
 export const ListContainer = () => {
@@ -14,11 +13,10 @@ export const ListContainer = () => {
   const onFetchUsers = (searchValue: string) => {
     getMembers(searchValue)
       .then((memberList) => {
-        console.log(memberList);
         setMemberList(memberList);
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
   }
 
@@ -38,7 +36,6 @@ export const ListContainer = () => {
         onSearch={onSearch}
         onChange={setSearchValue}
       />
-      <NavigationBar />
       <ListComponent memberList={memberList} />
     </>
   );

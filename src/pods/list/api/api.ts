@@ -5,6 +5,6 @@ export const getMembers = (org: string): Promise<MemberEntity[]> => {
     .then(
       response => response.json()
     ).catch((error) => {
-      console.log("Error fetching members: ", error);
+      console.error("Error fetching members: ", error);
     });
 }

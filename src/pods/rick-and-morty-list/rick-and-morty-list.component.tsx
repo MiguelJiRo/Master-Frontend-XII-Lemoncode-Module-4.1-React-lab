@@ -2,7 +2,9 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import Avatar from '@mui/material/Avatar';
 import { CharacterEntity } from "./api/api.model";
-import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, TableFooter } from "@mui/material";
+import { Pagination, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, TableFooter } from "@mui/material";
+import { routes } from '../../core/router/routes';
+import { CharactersContext } from '../../core/router/characters/characters.context'
 
 interface Props {
   characterList: CharacterEntity[];
@@ -44,15 +46,10 @@ const columns = [
 
 export const RickAndMortyListComponent: React.FC<Props> = props => {
   const { characterList, handleChangePage } = props;
-  const [rowsPerPage, setRowsPerPage] = React.useState(20);
-  const { page, count } = useContext<any>(null);
+  const { page, count } = useContext(CharactersContext);
 
   const handleChangeNextPage = (event: unknown, newPage: number) => {
-    handleChangePage(page);
-  };
-
-  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
+    handleChangePage(newPage);
   };
 
   return (
@@ -76,12 +73,14 @@ export const RickAndMortyListComponent: React.FC<Props> = props => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {characterList.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((character) => (
+            {characterList.map((character) => (
               <TableRow key={character.id}>
                 <TableCell align="left">
                   <Avatar alt={character.name} src={character.image} />
                 </TableCell>
-                <TableCell align="left"><Link to={`/rickandmorty/detail/${character.id}`}>{character.name}</Link></TableCell>
+                <TableCell align="left">
+                  <Link to={routes.rickAndMortyDetail(character.id)}>{character.name}</Link>
+                </TableCell>
                 <TableCell align="left">{character.status}</TableCell>
                 <TableCell align="left">{character.species}</TableCell>
                 <TableCell align="left">{character.type}</TableCell>
@@ -89,28 +88,11 @@ export const RickAndMortyListComponent: React.FC<Props> = props => {
               </TableRow>
             ))}
           </TableBody>
-          <TableFooter>
-            <TableRow>
-              <TablePagination
-                rowsPerPageOptions={[5, 10, 20, { label: 'All', value: -1 }]}
-                count={count}
-                rowsPerPage={rowsPerPage}
-                page={page}
-                SelectProps={{
-                  inputProps: {
-                    'aria-label': 'rows per page',
-                  },
-                  native: true,
-                }}
-                onPageChange={handleChangeNextPage}
-                onRowsPerPageChange={handleChangeRowsPerPage}
-                showFirstButton
-                showLastButton
-              />
-            </TableRow>
-          </TableFooter>
         </Table>
       </TableContainer>
+      <Pagination count={count}
+        page={page}
+        onChange={handleChangeNextPage} />
     </>
   );
 }

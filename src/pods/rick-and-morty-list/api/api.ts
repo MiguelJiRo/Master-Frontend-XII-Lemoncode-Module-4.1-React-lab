@@ -1,21 +1,17 @@
 import { FetchCharacterListResponse } from "./api.model";
 
-export const getCharacters = async (id: string): Promise<FetchCharacterListResponse> => {
+export const getCharacters = async (id: string, page: number): Promise<FetchCharacterListResponse> => {
   try {
-    console.log('getCharacters: ', id);
-    const response = await fetch(id === 'rick and morty' ? `https://rickandmortyapi.com/api/character/` : `https://rickandmortyapi.com/api/character/?name=${id}`);
-    return await response.json();
+    const characterFetch = id ? `&name=${id}` : '';
+    const pageFetch = id ? '' : (page ? `&page=${page}` : '');
+    const url = `https://rickandmortyapi.com/api/character/?`;
+    const urlFetch = id ? `${url}${characterFetch}` : `${url}${pageFetch}`;
+    return await fetch(urlFetch).then(
+      response => response.json()
+    ).catch((error) => {
+      console.error("Error fetching members: ", error);
+    });
   } catch (error) {
-    console.log("Error fetching character/s: ", error);
-  }
-}
-
-export const getNewPage = async (page: number): Promise<FetchCharacterListResponse> => {
-  try {
-    console.log('getNewPage: ', page);
-    const response = await fetch(`https://rickandmortyapi.com/api/character/?page=${page}`);
-    return await response.json();
-  } catch (error) {
-    console.log("Error fetching character/s: ", error);
+    console.error("Error fetching character/s: ", error);
   }
 }

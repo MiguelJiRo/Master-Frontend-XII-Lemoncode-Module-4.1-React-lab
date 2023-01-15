@@ -5,6 +5,6 @@ export const getUserData = (user: string): Promise<UserEntity[]> => {
     .then(
       response => response.json()
     ).catch((error) => {
-      console.log("Error fetching user: ", error);
+      console.error("Error fetching user: ", error);
     });
 }

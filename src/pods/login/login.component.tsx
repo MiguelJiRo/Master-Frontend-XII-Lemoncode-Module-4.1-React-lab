@@ -12,7 +12,8 @@ import IconButton from '@mui/material/IconButton';
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { routes } from '../../core/router/routes';
 
 const themeLight = createTheme({
     palette: {
@@ -44,7 +45,7 @@ export const LoginComponent = () => {
         e.preventDefault();
 
         if (username === "admin" && password === "admin") {
-            navigate("/list");
+            navigate(routes.memberList);
         } else {
             alert("User / password not valid, psst... admin / admin");
         }

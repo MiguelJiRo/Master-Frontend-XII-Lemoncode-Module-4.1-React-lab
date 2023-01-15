@@ -1,5 +1,5 @@
-import React from 'react';
-import { HashRouter, Route, Routes } from 'react-router-dom';
+import React, { Fragment } from 'react';
+import { BrowserRouter as Router, HashRouter, Route, Routes } from 'react-router-dom';
 import { switchRoutes } from './routes';
 import {
   LoginScene,
@@ -7,33 +7,36 @@ import {
   DetailScene,
   RickAndMortyListScene,
   RickAndMortyDetailScene,
-} from 'scenes';
+} from '../../scenes';
+import { CharactersProvider } from './characters/characters.provider';
 
 export const RouterComponent: React.FC = () => {
   return (
-    <HashRouter>
-      <Routes>
-        <Route
-          path={switchRoutes.root}
-          element={<LoginScene />}
-        />
-        <Route
-          path={switchRoutes.memberList}
-          element={<ListScene />}
-        />
-        <Route
-          path={switchRoutes.memberDetail}
-          element={<DetailScene />}
-        />
-        <Route
-          path={switchRoutes.rickAndMortyList}
-          element={<RickAndMortyListScene />}
-        />
-        <Route
-          path={switchRoutes.rickAndMortyDetail}
-          element={<RickAndMortyDetailScene />}
-        />
-      </Routes>
-    </HashRouter>
+    <CharactersProvider>
+      <Router>
+        <Routes>
+          <Route
+            path={switchRoutes.root}
+            element={<LoginScene />}
+          />
+          <Route
+            path={switchRoutes.memberList}
+            element={<ListScene />}
+          />
+          <Route
+            path={switchRoutes.memberDetail}
+            element={<DetailScene />}
+          />
+          <Route
+            path={switchRoutes.rickAndMortyList}
+            element={<RickAndMortyListScene />}
+          />
+          <Route
+            path={switchRoutes.rickAndMortyDetail}
+            element={<RickAndMortyDetailScene />}
+          />
+        </Routes>
+      </Router>
+    </CharactersProvider>
   );
 };

@@ -5,6 +5,6 @@ export const getCharacterData = (id: string): Promise<CharacterEntity[]> => {
     .then(
       response => response.json()
     ).catch((error) => {
-      console.log("Error fetching character: ", error);
+      console.error("Error fetching character: ", error);
     });
 }
